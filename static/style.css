@@ -1,0 +1,517 @@
+:root {
+    /* Default Dark Theme */
+    --bg-color: #050505;
+    --card-bg: #121212;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --accent-color: #3b82f6;
+    --good-color: #10b981;
+    --neutral-color: #6b7280;
+    --bad-color: #ef4444;
+    --input-bg: #1a1a1a;
+    --border-color: #2a2a2a;
+}
+
+[data-theme="light"] {
+    --bg-color: #f3f4f6;
+    --card-bg: #ffffff;
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --accent-color: #2563eb;
+    --good-color: #059669;
+    --neutral-color: #9ca3af;
+    --bad-color: #dc2626;
+    --input-bg: #f9fafb;
+    --border-color: #e5e7eb;
+}
+
+[data-theme="dark-blue"] {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-color: #38bdf8;
+    --good-color: #34d399;
+    --neutral-color: #64748b;
+    --bad-color: #f87171;
+    --input-bg: #334155;
+    --border-color: #334155;
+}
+
+[data-theme="dark-red"] {
+    --bg-color: #1a0505;
+    --card-bg: #2a1212;
+    --text-primary: #fff1f2;
+    --text-secondary: #fecaca;
+    --accent-color: #fb7185;
+    --good-color: #34d399;
+    --neutral-color: #7f1d1d;
+    --bad-color: #ef4444;
+    --input-bg: #450a0a;
+    --border-color: #450a0a;
+}
+
+* {
+    box_sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.5;
+    padding: 0;
+    /* Removed padding */
+    margin: 0;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.layout-grid {
+    display: grid;
+    grid-template-columns: 250px 1fr 320px;
+    gap: 4rem;
+    align-items: start;
+    min-height: 100vh;
+    /* Ensure full height */
+}
+
+/* Left Navbar */
+.main-nav {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-right: 1px solid var(--border-color);
+    height: 100vh;
+    /* Full viewport height */
+    position: fixed;
+    /* Stick to the left */
+    left: 0;
+    top: 0;
+    width: 250px;
+    border-radius: 0;
+    /* Remove radius for full sidebar */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Adjust main content to account for fixed nav */
+.main-content {
+    grid-column: 2;
+    /* Place in second column */
+    margin-left: 250px;
+    /* Offset by nav width */
+    /* Since we use grid gap, we might not need margin-left if we structure grid right, 
+       but with position:fixed, the grid cell becomes empty. 
+       Let's actually change the layout strategy slightly. 
+       Instead of position:fixed, let's keep it in the grid but make the grid span full height.
+    */
+}
+
+/* REVISED STRATEGY: Keep it simple with Grid */
+body {
+    padding: 0;
+    /* Remove body padding to allow full-width nav */
+    margin: 0;
+}
+
+.container {
+    max-width: 100%;
+    /* Allow full width */
+    margin: 0;
+    padding: 0;
+}
+
+.layout-grid {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr) 320px;
+    /* Fixed Nav, Flexible Content, Fixed Sidebar */
+    gap: 0;
+    /* Manage gap via padding in content areas */
+    min-height: 100vh;
+}
+
+.main-nav {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-right: 1px solid var(--border-color);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    border-radius: 0;
+}
+
+.main-content {
+    padding: 3rem 4rem;
+    /* Add breathing room here */
+}
+
+.sidebar-right {
+    padding: 3rem 2rem 0 0;
+    /* Add padding to right sidebar area */
+}
+
+/* Fix Summary Spacing */
+.breakdown {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    /* Increased gap */
+    margin-top: 1.5rem;
+    /* Add space above breakdown */
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    /* Slightly larger */
+    flex: 1;
+    /* Distribute space evenly */
+    text-align: center;
+    /* Center align stats */
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.03);
+    /* Subtle background */
+    border-radius: 8px;
+}
+
+.nav-brand {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--accent-color);
+}
+
+.nav-links {
+    list-style: none;
+}
+
+.nav-links li {
+    margin-bottom: 1rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 600;
+    transition: color 0.2s;
+    display: block;
+    padding: 0.5rem;
+    border-radius: 6px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Right Sidebar (Aliases) */
+.sidebar-right {
+    height: fit-content;
+}
+
+.aliases-card {
+    padding: 1.5rem;
+}
+
+.alias-scroll-container {
+    max-height: 250px;
+    /* Shows approx 4-5 items */
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+/* Scrollbar styling for aliases */
+.alias-scroll-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.alias-scroll-container::-webkit-scrollbar-track {
+    background: var(--input-bg);
+    border-radius: 3px;
+}
+
+.alias-scroll-container::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+.alias-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+.alias-list {
+    list-style: none;
+}
+
+.alias-list li {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9rem;
+}
+
+.alias-list li:last-child {
+    border-bottom: none;
+}
+
+.alias-key {
+    font-weight: 700;
+    color: var(--accent-color);
+    min-width: 40px;
+}
+
+.arrow {
+    color: var(--text-secondary);
+    margin: 0 0.5rem;
+}
+
+.alias-value {
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 1100px) {
+    .layout-grid {
+        grid-template-columns: 200px 1fr;
+    }
+
+    .sidebar-right {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 800px) {
+    .layout-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Single column layout for History/Settings */
+.dashboard.single-col {
+    grid-template-columns: 1fr;
+    max-width: 800px;
+    /* Limit width for readability */
+    margin: 0 auto;
+    /* Center the column */
+}
+
+.card.history-full,
+.card.settings {
+    grid-column: 1 / -1;
+    /* Ensure it spans if inside a grid */
+}
+
+.card {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.big-number {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.breakdown {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8rem;
+}
+
+.stat .value {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.stat.good .value {
+    color: var(--good-color);
+}
+
+.stat.neutral .value {
+    color: var(--neutral-color);
+}
+
+.stat.bad .value {
+    color: var(--bad-color);
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+input {
+    width: 100%;
+    max-width: 100%;
+    /* Ensure it doesn't overflow */
+    padding: 0.8rem;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+    /* Double check this is applied */
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.btn {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.btn.primary {
+    background-color: var(--accent-color);
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.btn.secondary {
+    background-color: transparent;
+    border: 1px solid var(--bad-color);
+    color: var(--bad-color);
+}
+
+.history-list {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.history-item .info {
+    display: flex;
+    flex-direction: column;
+}
+
+.history-item .cat {
+    font-weight: 600;
+}
+
+.history-item .time {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.history-item .amount {
+    font-weight: 600;
+}
+
+.flash-messages {
+    margin-bottom: 1rem;
+}
+
+.flash {
+    padding: 0.8rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.flash.success {
+    background-color: rgba(16, 185, 129, 0.2);
+    color: var(--good-color);
+    border: 1px solid var(--good-color);
+}
+
+.flash.error {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: var(--bad-color);
+    border: 1px solid var(--bad-color);
+}
+
+.flash.info {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+}

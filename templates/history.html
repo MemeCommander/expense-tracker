@@ -1,0 +1,24 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="main-content">
+    <main class="dashboard single-col">
+        <section class="card history-full">
+            <h2>Full Transaction History</h2>
+            <div class="history-list">
+                {% for entry in history %}
+                <div class="history-item">
+                    <div class="info">
+                        <span class="cat">{{ entry.category }}</span>
+                        <span class="time">{{ entry.timestamp }}</span>
+                    </div>
+                    <div class="amount {{ entry.type|lower }}">
+                        +${{ "%.2f"|format(entry.amount_added) }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+</div>
+{% endblock %}

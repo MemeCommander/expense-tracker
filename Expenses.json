@@ -1,0 +1,59 @@
+{
+    "College Boreal": {
+        "amount": 131.79999999999998,
+        "type": "Frivolous"
+    },
+    "Great Canadian Games": {
+        "amount": 1066.48,
+        "type": "Frivolous"
+    },
+    "Misc Food": {
+        "amount": 689.23,
+        "type": "Wasteful"
+    },
+    "Groceries": {
+        "amount": 61.68,
+        "type": "Good"
+    },
+    "Diadem": {
+        "amount": 6.78,
+        "type": "Frivolous"
+    },
+    "Steam": {
+        "amount": 16.16,
+        "type": "Frivolous"
+    },
+    "last_updated": "2025-11-18 22:05 EST",
+    "history": [
+        {
+            "timestamp": "2025-11-18 21:48 EST",
+            "category": "College Boreal",
+            "amount_added": 31.34,
+            "new_total": 131.79999999999998
+        },
+        {
+            "timestamp": "2025-11-18 21:50 EST",
+            "category": "Great Canadian Games",
+            "amount_added": 133.57,
+            "new_total": 1066.48
+        },
+        {
+            "timestamp": "2025-11-18 21:51 EST",
+            "category": "Diadem",
+            "amount_added": 6.78,
+            "new_total": 6.78
+        },
+        {
+            "timestamp": "2025-11-18 21:52 EST",
+            "category": "Misc Food",
+            "amount_added": 27.759999999999998,
+            "new_total": 689.23
+        },
+        {
+            "timestamp": "2025-11-18 22:05 EST",
+            "category": "Steam",
+            "amount_added": 16.16,
+            "new_total": 16.16
+        }
+    ]
+}

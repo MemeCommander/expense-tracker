@@ -1,0 +1,37 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="main-content">
+    <main class="dashboard single-col">
+        <section class="card settings">
+            <h2>Settings</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">Manage your expense tracker configuration.</p>
+
+            <div class="setting-group">
+                <h3>Appearance</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">Select your preferred theme.</p>
+                <div class="theme-grid"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem;">
+                    <button class="btn secondary" onclick="setTheme('dark')">Dark</button>
+                    <button class="btn secondary" onclick="setTheme('light')">Light</button>
+                    <button class="btn secondary" onclick="setTheme('dark-blue')">Blue</button>
+                    <button class="btn secondary" onclick="setTheme('dark-red')">Red</button>
+                </div>
+            </div>
+
+            <div class="setting-group" style="margin-top: 2rem;">
+                <h3>Data Management</h3>
+                <p>Current file: <code>Expenses.json</code></p>
+                <button class="btn secondary" onclick="alert('Feature coming soon!')">Export Data</button>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script>
+    function setTheme(themeName) {
+        document.documentElement.setAttribute('data-theme', themeName);
+        localStorage.setItem('theme', themeName);
+    }
+</script>
+{% endblock %}

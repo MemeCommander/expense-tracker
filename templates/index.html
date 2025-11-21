@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+        // Immediately apply theme to avoid flash
+        (function () {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="layout-grid">
+            <!-- Left Navbar -->
+            <nav class="main-nav">
+                <div class="nav-brand">ExpenseTracker</div>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('index') }}"
+                            class="{{ 'active' if request.endpoint == 'index' else '' }}">Dashboard</a></li>
+                    <li><a href="{{ url_for('history') }}"
+                            class="{{ 'active' if request.endpoint == 'history' else '' }}">History</a></li>
+                    <li><a href="{{ url_for('settings') }}"
+                            class="{{ 'active' if request.endpoint == 'settings' else '' }}">Settings</a></li>
+                </ul>
+            </nav>
+
+            {% block content %}
+            <!-- Main Content -->
+            <div class="main-content">
+                <header>
+                    <h1>Expense Tracker</h1>
+                    <p class="subtitle">Last Updated: {{ last_updated }}</p>
+                </header>
+
+                <!-- Flash Messages -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endwith %}
+
+                <main class="dashboard">
+                    <!-- Summary Card -->
+                    <section class="card summary">
+                        <h2>Total Spent</h2>
+                        <div class="big-number">${{ "%.2f"|format(total_all) }}</div>
+
+                        <div class="breakdown">
+                            <div class="stat good">
+                                <span class="label">Good</span>
+                                <span class="value">${{ "%.2f"|format(totals['Good']) }}</span>
+                            </div>
+                            <div class="stat neutral">
+                                <span class="label">Neutral</span>
+                                <span class="value">${{ "%.2f"|format(totals['Neutral']) }}</span>
+                            </div>
+                            <div class="stat bad">
+                                <span class="label">Bad</span>
+                                <span class="value">${{ "%.2f"|format(totals['Frivolous'] + totals['Wasteful'])
+                                    }}</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Actions Card -->
+                    <section class="card actions">
+                        <h2>Add Expense</h2>
+                        <form action="/add" method="POST" class="add-form">
+                            <div class="input-group">
+                                <label for="amount">Amount ($)</label>
+                                <input type="text" id="amount" name="amount" placeholder="e.g. 12.50, 5" required
+                                    autofocus>
+                            </div>
+                            <div class="input-group">
+                                <label for="category">Category</label>
+                                <input type="text" id="category" name="category" placeholder="e.g. Lunch, grc" required>
+                            </div>
+                            <button type="submit" class="btn primary">Add Expense</button>
+                        </form>
+
+                        <form action="/undo" method="POST" class="undo-form">
+                            <button type="submit" class="btn secondary">Undo Last</button>
+                        </form>
+                    </section>
+                </main>
+
+                <!-- History Section -->
+                <section class="history">
+                    <h2>Recent History</h2>
+                    <div class="history-list">
+                        {% for entry in history[:10] %}
+                        <div class="history-item">
+                            <div class="info">
+                                <span class="cat">{{ entry.category }}</span>
+                                <span class="time">{{ entry.timestamp.split(' ')[1] }}</span>
+                            </div>
+                            <div class="amount {{ entry.type|lower }}">
+                                +${{ "%.2f"|format(entry.amount_added) }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </section>
+            </div>
+            {% endblock %}
+
+            <!-- Right Sidebar (Aliases) -->
+            <aside class="sidebar-right">
+                <div class="card aliases-card">
+                    <h2>Aliases</h2>
+                    <div class="alias-scroll-container">
+                        <ul class="alias-list">
+                            {% for key, value in aliases.items() %}
+                            <li>
+                                <span class="alias-key">{{ key }}</span>
+                                <span class="arrow">→</span>
+                                <span class="alias-value">{{ value[0] }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -16,7 +16,7 @@ services:
     container_name: expense_proxy
     restart: always
     ports:
-      - "80:80" # Maps your laptop's port 80 to Nginx
+      - "8080:80" # Maps your laptop's port 8080 to Nginx. Changed from 80 because Apache is currently using it on this PC.
     volumes:
       # Mount the custom Nginx configuration
       - ./nginx.conf:/etc/nginx/nginx.conf:ro

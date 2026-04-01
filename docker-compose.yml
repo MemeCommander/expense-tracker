@@ -27,6 +27,9 @@ services:
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
+    environment:
+      - "REPO_USER=meme06"
+      - "REPO_PASS=INPUT_TOKEN_HERE"
     volumes:
       # Give Watchtower access to the Docker daemon to restart containers
       - /var/run/docker.sock:/var/run/docker.sock

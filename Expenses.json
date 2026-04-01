@@ -1,59 +1,55 @@
 {
-    "College Boreal": {
-        "amount": 131.79999999999998,
-        "type": "Frivolous"
+    "Cloud Hosting (AWS)": {
+        "amount": 450.00,
+        "type": "Neutral"
     },
-    "Great Canadian Games": {
-        "amount": 1066.48,
-        "type": "Frivolous"
-    },
-    "Misc Food": {
-        "amount": 689.23,
-        "type": "Wasteful"
-    },
-    "Groceries": {
-        "amount": 61.68,
+    "Software Licenses": {
+        "amount": 120.50,
         "type": "Good"
     },
-    "Diadem": {
-        "amount": 6.78,
+    "Office Snacks": {
+        "amount": 200.00,
         "type": "Frivolous"
     },
-    "Steam": {
-        "amount": 16.16,
-        "type": "Frivolous"
+    "Advertising Campaign": {
+        "amount": 850.75,
+        "type": "Good"
     },
-    "last_updated": "2025-11-18 22:05 EST",
+    "Unused Subscriptions": {
+        "amount": 95.00,
+        "type": "Wasteful"
+    },
+    "last_updated": "2026-04-01 18:00 EST",
     "history": [
         {
-            "timestamp": "2025-11-18 21:48 EST",
-            "category": "College Boreal",
-            "amount_added": 31.34,
-            "new_total": 131.79999999999998
+            "timestamp": "2026-04-01 17:45 EST",
+            "category": "Cloud Hosting (AWS)",
+            "amount_added": 450.00,
+            "new_total": 450.00
         },
         {
-            "timestamp": "2025-11-18 21:50 EST",
-            "category": "Great Canadian Games",
-            "amount_added": 133.57,
-            "new_total": 1066.48
+            "timestamp": "2026-04-01 17:50 EST",
+            "category": "Software Licenses",
+            "amount_added": 120.50,
+            "new_total": 120.50
         },
         {
-            "timestamp": "2025-11-18 21:51 EST",
-            "category": "Diadem",
-            "amount_added": 6.78,
-            "new_total": 6.78
+            "timestamp": "2026-04-01 17:55 EST",
+            "category": "Office Snacks",
+            "amount_added": 200.00,
+            "new_total": 200.00
         },
         {
-            "timestamp": "2025-11-18 21:52 EST",
-            "category": "Misc Food",
-            "amount_added": 27.759999999999998,
-            "new_total": 689.23
+            "timestamp": "2026-04-01 17:58 EST",
+            "category": "Advertising Campaign",
+            "amount_added": 850.75,
+            "new_total": 850.75
         },
         {
-            "timestamp": "2025-11-18 22:05 EST",
-            "category": "Steam",
-            "amount_added": 16.16,
-            "new_total": 16.16
+            "timestamp": "2026-04-01 18:00 EST",
+            "category": "Unused Subscriptions",
+            "amount_added": 95.00,
+            "new_total": 95.00
         }
     ]
 }

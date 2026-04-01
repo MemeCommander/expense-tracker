@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  # The Expense Tracker Application
+  web:
+    image: meme06/expense-tracker:latest # This is the image GitHub Actions will build
+    container_name: expense_web
+    restart: always
+    volumes:
+      # Mount the JSON file so your expenses persist even if the container restarts/updates
+      - ./Expenses.json:/app/Expenses.json
+
+  # The Reverse Proxy (Nginx)
+  nginx:
+    image: nginx:alpine
+    container_name: expense_proxy
+    restart: always
+    ports:
+      - "80:80" # Maps your laptop's port 80 to Nginx
+    volumes:
+      # Mount the custom Nginx configuration
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - web
+
+  # The Continuous Deployment Tool (Watchtower)
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      # Give Watchtower access to the Docker daemon to restart containers
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30 expense_web # Check Docker Hub every 30 seconds for only this app

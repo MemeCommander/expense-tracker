@@ -114,7 +114,11 @@ class ExpenseTracker:
             category = category_input.title() 
             
             if category not in self.expenses:
-                type_input = input(f"New Category '{category}'. Type [G/N/F/W] (default Neutral): ").strip().upper()
+                try:
+                    type_input = input(f"New Category '{category}'. Type [G/N/F/W] (default Neutral): ").strip().upper()
+                except (EOFError, RuntimeError):
+                    type_input = "N"
+                
                 cat_type = (
                     "Good" if type_input == "G" else
                     "Neutral" if type_input in ("N", "") else
